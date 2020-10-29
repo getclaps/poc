@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "name": "@getclaps/poc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/getclaps/poc.git"
+  },
+  "author": "Florian Klampfer <mail@qwtel.com> (https://qwtel.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/getclaps/poc/issues"
+  },
+  "homepage": "https://github.com/getclaps/poc#readme",
+  "dependencies": {
+    "uuid-class": "^0.10.0"
+  }
+}
