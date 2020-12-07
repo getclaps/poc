@@ -1,23 +1,38 @@
 {
-  "private": true,
-  "name": "@getclaps/poc",
+  "name": "@getclaps/proof-of-clap",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.ts",
+  "type": "module",
+  "main": "index.js",
+  "module": "index.js",
+  "files": [
+    "index*",
+    "tsconfig*.json"
+  ],
+  "types": "./index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "clean": "rm -f *.d.ts *.js *.js.map *.d.ts.map",
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "build": "tsc -d",
+    "prepack": "npm run clean && npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/getclaps/poc.git"
+    "url": "git+https://github.com/getclaps/proof-of-clap.git"
   },
   "author": "Florian Klampfer <mail@qwtel.com> (https://qwtel.com/)",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/getclaps/poc/issues"
+    "url": "https://github.com/getclaps/proof-of-clap/issues"
   },
-  "homepage": "https://github.com/getclaps/poc#readme",
+  "homepage": "https://github.com/getclaps/proof-of-clap#readme",
   "dependencies": {
-    "uuid-class": "^0.10.0"
-  }
+    "uuid-class": "^0.10.3"
+  },
+  "devDependencies": {
+    "typescript": "^4.1.2"
+  },
+  "description": ""
 }
