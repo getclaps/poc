@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/getclaps/proof-of-clap#readme",
   "dependencies": {
+    "typed-array-utils": "^0.1.0",
     "uuid-class": "^0.10.3"
   },
   "devDependencies": {

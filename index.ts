@@ -1,6 +1,7 @@
 import { UUID } from "uuid-class";
+import { concatBufferSources } from 'typed-array-utils';
 
-type AnyBytes =
+type Bytes =
   | Int8Array 
   | Int16Array 
   | Int32Array 
@@ -16,20 +17,7 @@ type AnyBytes =
 const BASE_DIFFICULTY = 8;
 const BASE_CLAPS = 15;
 
-function concatArrayBuffers(...abs: ArrayBuffer[]) {
-  const u8s = abs.map(a => new Uint8Array(a));
-  const size = u8s.reduce((size, u8) => size + u8.length, 0);
-  const res = new Uint8Array(size);
-  let i = 0;
-  for (const u8 of u8s) {
-    res.set(u8, i);
-    i += u8.length;
-  }
-  return res.buffer;
-}
-
-const sha256 = (data: AnyBytes) => crypto.subtle.digest('SHA-256', data);
-
+const sha256 = (data: Bytes) => crypto.subtle.digest('SHA-256', data);
 const digest = (message: string) => sha256(new TextEncoder().encode(message));
 
 async function makeKey({ url, id, claps, nonce }: {
@@ -38,12 +26,12 @@ async function makeKey({ url, id, claps, nonce }: {
   claps: number,
   nonce: number,
 }) {
-  return concatArrayBuffers(
+  return concatBufferSources(
     await digest(url.toString()),
-    new UUID(id.toString()).buffer,
-    new Uint32Array([claps]).buffer,
-    new Uint32Array([nonce]).buffer,
-  );
+    new UUID(id.toString()),
+    new Uint32Array([claps]),
+    new Uint32Array([nonce]),
+  ).buffer;
 }
 
 function leadingZeros(ab: ArrayBuffer, n: number) {
